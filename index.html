@@ -1,33 +1,502 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yashvi Patel - Physics PhD Student</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <!-- Your website content goes here -->
-    <header>
-        <div class="container">
-            <h1>Yashvi Patel</h1>
-            <p>Physics PhD Student at Yale University</p>
+import { Github, Linkedin, Mail, FileText, Code, GraduationCap, Award, BookOpen, ExternalLink, Microscope, Atom, Briefcase, Heart } from 'lucide-react';
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('research');
+
+  const publications = [
+    {
+      title: "Procoli: Profiles of cosmological likelihoods",
+      authors: "Karwal, T., Patel, Y., Bartlett, A., Poulin, V., Smith, T. L., & Pfeffer, D. N.",
+      venue: "arXiv preprint arXiv:2401.14225",
+      year: 2024,
+      status: "Preprint",
+      link: "https://arxiv.org/abs/2401.14225"
+    },
+    {
+      title: "Comparative analysis of interacting stepped dark radiation",
+      authors: "Schöneberg, N., Franco Abellán, G., Simon, T., Bartlett, A., Patel, Y., & Smith, T. L.",
+      venue: "Physical Review D, 108(12), 123513",
+      year: 2023,
+      status: "Published",
+      link: "https://doi.org/10.1103/PhysRevD.108.123513"
+    },
+    {
+      title: "A Simple Method for Quantifying Blastema Growth in Regenerating Planarians",
+      authors: "Campillo, N., Ireland, D., Patel, Y., Collins, E. S.",
+      venue: "Current protocols, 3(3), e684",
+      year: 2023,
+      status: "Published",
+      link: "https://doi.org/10.1002/cpz1.684"
+    }
+  ];
+
+  const researchProjects = [
+    {
+      title: "Computational Biophysics in Immunology",
+      description: "Developing computational models to understand immune cell interactions and signaling pathways using molecular dynamics simulations and machine learning approaches.",
+      timeline: "Aug 2024 - Present",
+      institution: "Yale University",
+      technologies: ["Python", "Molecular Dynamics", "Machine Learning", "Biophysics"],
+      status: "Ongoing"
+    },
+    {
+      title: "Pulsar Timing Array Analysis for Gravitational Wave Studies",
+      description: "Implementing theoretical models for different wave speeds of the stochastic gravitational wave background and analyzing NanoGrav 15-year data using MCMC parallel tempering techniques.",
+      timeline: "Jun 2023 - Present",
+      institution: "Swarthmore College",
+      technologies: ["Python", "MCMC", "Gravitational Waves", "Cosmology"],
+      status: "Ongoing"
+    },
+    {
+      title: "Likelihood Profile Analysis of Early Dark Energy",
+      description: "Developing and testing a frequentist likelihood profile algorithm in cosmology using MontePython and Cobaya, applying it to Early Dark Energy extensions of the standard cosmological model.",
+      timeline: "Jul 2022 - Jan 2024",
+      institution: "Swarthmore College",
+      technologies: ["Python", "MontePython", "Cobaya", "Cosmology"],
+      status: "Completed"
+    },
+    {
+      title: "Interacting Dark Matter-Stepped Dark Radiation",
+      description: "Exploring the model as a solution to Hubble and S8 tensions in cosmology; implemented in Einstein Boltzmann code CLASS and constrained with data using MontePython.",
+      timeline: "Jun 2022 - Jul 2023",
+      institution: "Swarthmore College",
+      technologies: ["CLASS", "MontePython", "Cosmology", "Dark Matter"],
+      status: "Completed"
+    }
+  ];
+
+  const personalInterests = [
+    {
+      title: "Science Education Outreach",
+      description: "Co-President and Treasurer of Society of Physics Students, where I managed a $9,000 annual budget and increased membership from 35 to 130 students. Initiated a mentorship program bridging younger students with senior peers.",
+      achievements: [
+        "Led SPS chapter recognized nationally by AIP as 'Outstanding SPS Chapter' (2021-22, 2022-23)",
+        "Organized events and workshops for over 130 physics students",
+        "Managed budget allocation for club events and equipment"
+      ]
+    },
+    {
+      title: "Teaching & Mentorship",
+      description: "Teaching Assistant for multiple physics courses and Student Academic Mentor supporting first-year students' transition to college.",
+      achievements: [
+        "Assisted in instruction of Quantum Mechanics, Thermodynamics, Optics, and E&M courses",
+        "Provided personalized guidance to 60+ students",
+        "Organized group bonding activities for first-year students"
+      ]
+    },
+    {
+      title: "Accessible Science Tools",
+      description: "Development of low-cost scientific tools for education, including a method for quantifying flatworm regeneration and a tool for studying flatworm behavior suitable for middle school students.",
+      achievements: [
+        "Designed educational tools using accessible, cost-effective materials",
+        "Created instructional videos for wider scientific community implementation",
+        "Presented work at Conference for Undergraduate Women in Physics"
+      ]
+    },
+    {
+      title: "Global Education Initiatives",
+      description: "Coordinator for EducationUSA Kenya, supporting pre-college students from low-income backgrounds in the U.S. college application process.",
+      achievements: [
+        "Supervised mentor-mentee pairings for 35 students",
+        "Organized SAT training sessions and college application workshops",
+        "Coordinated residential bootcamp for 50 students and mentors"
+      ]
+    }
+  ];
+
+  const skills = [
+    { 
+      category: "Programming", 
+      items: ["Python", "C/C++", "Matlab", "Jupyter", "Bash", "LaTeX"] 
+    },
+    { 
+      category: "Scientific Software", 
+      items: ["Mathematica", "ImageJ", "AstroImageJ", "Git", "MontePython", "Cobaya", "CLASS"] 
+    },
+    { 
+      category: "Research Methods", 
+      items: ["MCMC", "Markov Chain Monte Carlo", "Data Analysis", "Statistical Modeling", "Scientific Computing"] 
+    },
+    { 
+      category: "Laboratory Skills", 
+      items: ["Lathe operation", "Laser cutting", "3D printing", "Optical microscopy", "Interferometry"] 
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">Yashvi Patel</h1>
+                <div className="flex space-x-6 mt-1">
+                  <button
+                    onClick={() => setActiveTab('research')}
+                    className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                      activeTab === 'research'
+                        ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
+                        : 'text-gray-600 hover:text-blue-600'
+                    }`}
+                  >
+                    <Briefcase className="w-4 h-4" />
+                    <span>Research</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('personal')}
+                    className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                      activeTab === 'personal'
+                        ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
+                        : 'text-gray-600 hover:text-blue-600'
+                    }`}
+                  >
+                    <Heart className="w-4 h-4" />
+                    <span>Personal</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <nav className="hidden md:flex space-x-6">
+              <a
+                href="https://github.com/yashvipatel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/yashvipatel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="mailto:ypatel1@swarthmore.edu"
+                className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Contact</span>
+              </a>
+            </nav>
+          </div>
         </div>
-    </header>
-    
-    <main>
-        <!-- Add your sections here -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Welcome to my personal website...</p>
+      </header>
+
+      <main className="max-w-6xl mx-auto px-6 py-8">
+        {/* Hero Section */}
+        <section className="text-center mb-16">
+          <div className="relative inline-block mb-8">
+            <img
+              src="https://placehold.co/300x300/f3f4f6/6b7280?text=Yashvi+Patel"
+              alt="Yashvi Patel"
+              className="w-48 h-48 rounded-full object-cover border-4 border-white shadow-lg"
+            />
+            <div className="absolute -bottom-2 -right-2 bg-white p-2 rounded-full shadow-lg">
+              <img
+                src="https://placehold.co/40x40/6366f1/ffffff?text=PHD"
+                alt="PhD Badge"
+                className="w-10 h-10 rounded-full"
+              />
+            </div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Bridging Physics and
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Biological Discovery</span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Physics PhD student at Yale University exploring computational biophysics with applications in immunology and cosmology.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://github.com/yashvipatel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <Github className="w-5 h-5" />
+              <span>GitHub</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/yashvipatel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Linkedin className="w-5 h-5" />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="mailto:ypatel1@swarthmore.edu"
+              className="flex items-center space-x-2 bg-white text-gray-900 px-6 py-3 rounded-lg border hover:bg-gray-50 transition-colors"
+            >
+              <Mail className="w-5 h-5" />
+              <span>Contact</span>
+            </a>
+          </div>
         </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Yashvi Patel</p>
-    </footer>
-    
-    <script src="js/script.js"></script>
-</body>
-</html>
+
+        {/* Research Content */}
+        {activeTab === 'research' && (
+          <section className="mb-16">
+            <div className="flex items-center mb-8">
+              <Atom className="w-8 h-8 text-blue-600 mr-3" />
+              <h3 className="text-3xl font-bold text-gray-900">Research Portfolio</h3>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Computational Biophysics in Immunology</h4>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Developing computational models to understand immune cell interactions and signaling pathways using molecular dynamics simulations and machine learning approaches. 
+                  My work focuses on creating predictive models for immune responses and cellular communication mechanisms.
+                </p>
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h5 className="font-semibold text-blue-900 mb-2">Research Focus:</h5>
+                  <ul className="text-blue-800 text-sm space-y-1">
+                    <li>• Molecular dynamics simulations of immune receptors</li>
+                    <li>• Machine learning approaches to predict immune responses</li>
+                    <li>• Computational modeling of cell signaling pathways</li>
+                    <li>• Data analysis of high-throughput biological experiments</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <h4 className="text-xl font-bold text-gray-900 mb-4">Cosmology and Fundamental Physics</h4>
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  Addressing tensions in the standard cosmological model through novel dark matter and dark energy scenarios. 
+                  I develop and test theoretical models using advanced computational techniques and observational data.
+                </p>
+                <div className="bg-purple-50 rounded-lg p-4">
+                  <h5 className="font-semibold text-purple-900 mb-2">Research Focus:</h5>
+                  <ul className="text-purple-800 text-sm space-y-1">
+                    <li>• Early Dark Energy models</li>
+                    <li>• Interacting dark matter scenarios</li>
+                    <li>• Pulsar Timing Array analysis</li>
+                    <li>• Likelihood profile analysis in cosmology</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Publications */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+              <div className="flex items-center mb-6">
+                <BookOpen className="w-8 h-8 text-green-600 mr-3" />
+                <h3 className="text-2xl font-bold text-gray-900">Publications</h3>
+              </div>
+              <div className="space-y-6">
+                {publications.map((pub, index) => (
+                  <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
+                    <div className="flex items-start justify-between mb-3">
+                      <h4 className="text-lg font-semibold text-gray-900 leading-tight">
+                        {pub.title}
+                      </h4>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        pub.status === 'Published' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {pub.status}
+                      </span>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-2 italic">{pub.authors}</p>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
+                      <span>{pub.venue}</span>
+                      <span>•</span>
+                      <span>{pub.year}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <a
+                        href={pub.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm"
+                      >
+                        View Publication <ExternalLink className="w-4 h-4 ml-1" />
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Research Projects */}
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Research Projects</h3>
+              <div className="space-y-6">
+                {researchProjects.map((project, index) => (
+                  <div key={index} className="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h4>
+                        <p className="text-gray-600 mb-2">{project.institution}</p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium mt-2 md:mt-0 ${
+                        project.status === 'Completed' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-blue-100 text-blue-800'
+                      }`}>
+                        {project.status}
+                      </span>
+                    </div>
+                    <p className="text-gray-700 mb-4 leading-relaxed">{project.description}</p>
+                    <p className="text-sm text-gray-600 mb-4">{project.timeline}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Personal Content */}
+        {activeTab === 'personal' && (
+          <section className="mb-16">
+            <div className="flex items-center mb-8">
+              <Heart className="w-8 h-8 text-red-600 mr-3" />
+              <h3 className="text-3xl font-bold text-gray-900">Personal & Professional Development</h3>
+            </div>
+            
+            <div className="space-y-8">
+              {personalInterests.map((interest, index) => (
+                <div key={index} className="bg-white rounded-2xl shadow-lg p-8">
+                  <h4 className="text-xl font-bold text-gray-900 mb-4">{interest.title}</h4>
+                  <p className="text-gray-700 mb-6 leading-relaxed">{interest.description}</p>
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <h5 className="font-semibold text-gray-900 mb-3">Key Achievements:</h5>
+                    <ul className="space-y-2">
+                      {interest.achievements.map((achievement, achievementIndex) => (
+                        <li key={achievementIndex} className="flex items-start">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span className="text-gray-700">{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Teaching Experience */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mt-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Teaching & Leadership</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Teaching Assistant</h4>
+                  <p className="text-gray-600 mb-2">Department of Physics and Astronomy, Swarthmore College</p>
+                  <p className="text-gray-600 text-sm">Aug 2021 - May 2024</p>
+                  <div className="mt-4 space-y-2">
+                    <p className="text-gray-700 text-sm">Courses assisted:</p>
+                    <ul className="text-gray-600 text-sm space-y-1 ml-4">
+                      <li>• Introductory Quantum Mechanics and Special Relativity (PHYS 005)</li>
+                      <li>• Thermodynamics (PHYS 013)</li>
+                      <li>• Optics (PHYS 015)</li>
+                      <li>• Mechanics (PHYS 007)</li>
+                      <li>• Electricity and Magnetism (PHYS 008)</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Student Academic Mentor</h4>
+                  <p className="text-gray-600 mb-2">Swarthmore College Office of Academic Success</p>
+                  <p className="text-gray-600 text-sm">Aug 2021 - May 2023</p>
+                  <div className="mt-4">
+                    <p className="text-gray-700 text-sm">
+                      Provided personalized guidance to 60+ students, supporting their academic aspirations and organizing group bonding activities for first-year students.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Workshops & Service */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mt-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Workshops & Service</h3>
+              <div className="space-y-6">
+                <div className="border-l-4 border-blue-600 pl-6">
+                  <h4 className="font-semibold text-gray-900">AstroTech Summer School, UC Berkeley</h4>
+                  <p className="text-gray-600">Jul 2023</p>
+                  <p className="text-gray-700 mt-2">
+                    Participated in a 1-week workshop collaboratively working in an optics lab to create a spectrograph. Trained to be a specialist in software, creating a pipeline to convert images taken by a detector into spectrographs.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-purple-600 pl-6">
+                  <h4 className="font-semibold text-gray-900">Technical Assistant, Engineering Workshop</h4>
+                  <p className="text-gray-600">Feb 2021 - May 2022</p>
+                  <p className="text-gray-700 mt-2">
+                    Managed the workshop inventory and guided students on the safe use of power tools including table saws, drill presses, metal CNC machines, and mills.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-green-600 pl-6">
+                  <h4 className="font-semibold text-gray-900">EducationUSA Kenya Coordinator</h4>
+                  <p className="text-gray-600">May 2021 - Sep 2021</p>
+                  <p className="text-gray-700 mt-2">
+                    Supervised mentor-mentee pairings for 35 pre-college low-income students. Organized SAT training sessions, college application workshops, and residential bootcamp for 50 students and mentors.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold">Yashvi Patel</span>
+            </div>
+            <p className="text-gray-400 mb-6">
+              PhD Student in Physics at Yale University | Computational Biophysics & Cosmology
+            </p>
+            <div className="flex justify-center space-x-6">
+              <a href="https://github.com/yashvipatel" className="text-gray-400 hover:text-white transition-colors">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href="https://linkedin.com/in/yashvipatel" className="text-gray-400 hover:text-white transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="mailto:yashvi.patel@yale.edu" className="text-gray-400 hover:text-white transition-colors">
+                <Mail className="w-6 h-6" />
+              </a>
+            </div>
+            <div className="border-t border-gray-800 mt-8 pt-8">
+              <p className="text-gray-500 text-sm">
+                © 2024 Yashvi Patel. All rights reserved. | Designed with React and Tailwind CSS
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
